@@ -12,23 +12,17 @@
  */
 
 #include "RoadNetwork.h"
+#include "EdgeWeightedGraphCommon.h"
 
 #ifndef WRAPPER_H
 #define WRAPPER_H
 
-typedef RoadNetwork::Road Edge;
-
+template <typename T, F>
 class RoadGraphWrapper{
-    
+
 private:
-    // Type queue de priorite. MinPQ::top() retourne l'élément le plus petit.
-    typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
-    
-        
-private:
-    
+    typedef RoadWrapper<F> Edge;
     RoadNetwork *rn;
-    MinPQ pq;
     
 public:
     RoadGraphWrapper(RoadNetwork &rn) : rn(rn) {
@@ -38,11 +32,7 @@ public:
     
     void forEachEdge(void (*f) (const Edge&));
     
-    void forEachAdjacentEdge(int v, void (*f) (const Edge&));
-    
-    Edge roadToEdge(const RoadNetwork::Road rn);
-    
-    
+    void forEachAdjacentEdge(int v, void (*f) (const Edge&));    
 };
 
 #endif /* WRAPPER_H */

@@ -22,20 +22,22 @@
 #include "RoadGraphWrapper.h"
 
     
+template< typename T>
 int RoadGraphWrapper::V(){
     return rn.cities.size();
 }
     
+template< typename T>
 void RoadGraphWrapper::forEachEdge(void (*f) (const Edge&)){
-    for(Edge &e : rn->roads){               // PAS SUR COPIE?
-        f(e);
+    for(RoadNetwork::Road &r : rn->roads){               // PAS SUR COPIE?
+        f(roadToEdge(r));
     }
 }
     
+template< typename T>
 void RoadGraphWrapper::forEachAdjacentEdge(int v, void (*f) (const Edge&)){
-    for(Edge &e : rn->cities[v].roads){     // PAS SUR COPIE?
-        f(e);
+    for(RoadNetwork::Road &r : rn->cities[v].roads){     // PAS SUR COPIE?
+        f(new Edge(r.cities.first, r.cities.second,));
     }
 }
 
-Edge RoadGraphWrapper::roadToEdge(const RoadNetwork::Road rn);

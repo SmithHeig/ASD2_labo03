@@ -22,14 +22,26 @@ using namespace std;
 // Calcule et affiche le plus court chemin de la ville depart a la ville arrivee
 // en passant par le reseau routier rn. Le critere a optimiser est la distance.
 
+#define HIGHWAY_SPEED 120.0
+#define NORMAL_ROAD_SPEED.0 70
+#define HIGHWAY_RENOVATION_PRICE 15.0      // IN MILLIONS
+#define NORMAL_ROAD_RENOVATION_PRICE 7.0   // IN MILLIONS
+
+double LengthToWeight(RoadNetwork::Road &r){
+    return r.length;
+}
 void PlusCourtChemin(const string& depart, const string& arrivee, RoadNetwork& rn) {   
     /* A IMPLEMENTER */
+    
 }
 
 // Calcule et affiche le plus rapide chemin de la ville depart a la ville arrivee via la ville "via"
 // en passant par le reseau routier rn. Le critere a optimiser est le temps de parcours
 // sachant que l'on roule a 120km/h sur autoroute et 70km/h sur route normale.
 
+double TimeToWeight(RoadNetwork::Road &r){
+    return (r.length * r.motorway.Value() / HIGHWAY_SPEED) + (r.length * (1 - r.motorway.Value()) / NORMAL_ROAD_SPEED);
+}
 void PlusRapideChemin(const string& depart, const string& arrivee, const string& via, RoadNetwork& rn) {
     /* A IMPLEMENTER */
 }
@@ -38,6 +50,9 @@ void PlusRapideChemin(const string& depart, const string& arrivee, const string&
 // cher, en sachant que renover 1km d'autoroute coute 15 MF, et renover 1km de route normale
 // coute 7 MF.
 
+double CheapestToWeight(RoadNetwork::Road &r) {
+    return (r.length * r.motorway.Value() * HIGHWAY_RENOVATION_PRICE) + (r.length * (1 - r.motorway.Value()) * NORMAL_ROAD_RENOVATION_PRICE);
+}
 void ReseauLeMoinsCher(RoadNetwork &rn) {
     /* A IMPLEMENTER */
 }
