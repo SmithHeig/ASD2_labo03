@@ -22,7 +22,8 @@ class RoadGraphWrapper{
 private:
     // Type queue de priorite. MinPQ::top() retourne l'élément le plus petit.
     typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
-    typedef RoadNetwork::Road Edge;
+    typedef 
+    Edge;
         
 private:
     
@@ -39,7 +40,7 @@ public:
     
     void forEachAdjacentEdge(int v, void (*f) (const Edge&));
     
-    
+    Edge roadToEdge(const RoadNetwork::Road rn);
     
     
 };
