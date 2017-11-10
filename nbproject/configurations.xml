@@ -8,7 +8,9 @@
       <itemPath>EdgeWeightedGraph.h</itemPath>
       <itemPath>EdgeWeightedGraphCommon.h</itemPath>
       <itemPath>MinimumSpanningTree.h</itemPath>
+      <itemPath>RoadDigraphWrapper.h</itemPath>
       <itemPath>RoadGraphWrapper.h</itemPath>
+      <itemPath>RoadGraphWrapperCommon.h</itemPath>
       <itemPath>RoadNetwork.h</itemPath>
       <itemPath>ShortestPath.h</itemPath>
       <itemPath>UnionFind.h</itemPath>
@@ -26,7 +28,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>RoadDigraphWrapper.cpp</itemPath>
       <itemPath>RoadGraphWrapper.cpp</itemPath>
+      <itemPath>RoadGraphWrapperCommon.cpp</itemPath>
       <itemPath>RoadNetwork.cpp</itemPath>
       <itemPath>UnionFind.cpp</itemPath>
       <itemPath>Util.cpp</itemPath>
@@ -69,9 +73,17 @@
       </item>
       <item path="MinimumSpanningTree.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RoadDigraphWrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadDigraphWrapper.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="RoadGraphWrapper.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadGraphWrapper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadGraphWrapperCommon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadGraphWrapperCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -129,9 +141,17 @@
       </item>
       <item path="MinimumSpanningTree.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="RoadDigraphWrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadDigraphWrapper.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="RoadGraphWrapper.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadGraphWrapper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadGraphWrapperCommon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadGraphWrapperCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>

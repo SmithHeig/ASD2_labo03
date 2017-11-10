@@ -70,7 +70,7 @@ public:
 	typedef typename BASE::Weight Weight;
 
 	DijkstraSP(const GraphType& g, int v)  {
-		/* A IMPLEMENTER */
+            /* to do*/
 	}
 };
 
