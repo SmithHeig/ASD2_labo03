@@ -37,8 +37,7 @@ void RoadGraphWrapper::forEachAdjacentEdge(int v, void (*f) (const Edge&)){
         f(e);
     }
 }
-    
-    
-    
-    
 
+Edge RoadGraphWrapper::roadToEdge(const RoadNetwork::Road rn){
+    
+}
