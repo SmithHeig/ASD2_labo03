@@ -16,14 +16,14 @@
 #ifndef WRAPPER_H
 #define WRAPPER_H
 
+typedef RoadNetwork::Road Edge;
 
 class RoadGraphWrapper{
     
 private:
     // Type queue de priorite. MinPQ::top() retourne l'élément le plus petit.
     typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
-    typedef 
-    Edge;
+    
         
 private:
     
