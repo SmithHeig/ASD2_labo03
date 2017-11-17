@@ -45,8 +45,7 @@ public:
     // la longueur en km, et la fraction d'autoroute sur ce trajet.
     struct Road {
     public:
-        Road(int c1, int c2, int length, int num, int denom) :
-        cities(std::make_pair(c1,c2)), length(length), motorway(Fraction(num,denom)) { }
+        Road(int c1, int c2, int length, int num, int denom) : cities(std::make_pair(c1,c2)), length(length), motorway(Fraction(num,denom)) { }
                
         std::pair<int,int> cities;
         int length;

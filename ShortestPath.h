@@ -13,6 +13,7 @@
 #include <vector>
 #include <set>
 #include <functional>
+#include <list>
 
 
 // Classe parente de toutes les classes de plus court chemin.
@@ -68,10 +69,102 @@ public:
 	typedef ShortestPath<GraphType> BASE;
 	typedef typename BASE::Edge Edge;
 	typedef typename BASE::Weight Weight;
-
+        
+        // Type queue de priorite. MinPQ::top() retourne l'élément le plus petit.
+	typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
+        typedef std::pair<Edge,int> EdgeVertex;     // paire arc/sommet.
+        
 	DijkstraSP(const GraphType& g, int v)  {
+            
+            doDjikstra(g, v);
+            
+            
             /* to do*/
 	}
+        
+        void doDjikstra(const GraphType& g, int v){
+            
+            std::priority_queue<EdgeVertex, Weight> q;
+            
+            
+            Weight distTo[g.V()];
+            Edge edgeTo[g.V()];
+            
+            distTo[v] = 0.0;
+            g.forEachVertex(v, [&](const Edge& e){
+                if( e != v){
+                    distTo[e] = -1;
+                    edgeTo[e] = NULL;
+                }
+                q.emplace(e, g.distTo(e));
+            });
+            
+            
+            int monSommet;
+            while(!q.empty()){
+                monSommet = q.top();
+                q.pop();
+                
+                for(Edge e : g.adjacentEdges(monSommet)){
+                    Weight dittThruE = distTo(v) + e.wheigt;
+                    if(dittThruE < distTo(e.to()){
+                        distTo[e.to()] = dittThruE;
+                        edgeTo[e.to()] = e;
+                    }
+                    q.emplace(e.to(), distTo(e.to()));
+                }
+            }
+
+            
+            
+            std::priority_queue<int, int> pq;
+            g.forEachVertex(pq.push({}, -1));
+            pq.emplace(v, 0);
+            
+            while(!pq.empty()){
+                pq.pop();
+                int *lanbI = pq.top();
+                if(*lanbI == -1){
+                    break;
+                }
+                g.forEachEdge(
+                
+            }
+            
+            size_t k = 0;
+            bool hasToContinue = true;
+            std::vector<int> sommetsWight;
+            std::vector<int> parent(g.V(), -1);
+            sommetsWight.resize(g.V(), -1);
+            
+            sommetsWight.at(v) = 0;
+            
+            while(k < g.V() && hasToContinue){
+                
+                hasToContinue = false;
+                ++k;
+                g.forEachEdge({
+                    
+                    
+                    
+                    
+                    
+                });
+                
+                
+                
+            }
+            
+            std::priority_queue<int> q;
+            double distTo[g.V()];
+            Edge Egges[g.V()];
+            
+            g.forEachVertex();
+            
+            
+        }
+        
+        void funct modifier()
 };
 
 // Algorithme de BellmanFord.
