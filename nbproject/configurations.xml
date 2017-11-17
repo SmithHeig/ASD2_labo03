@@ -8,14 +8,14 @@
       <itemPath>EdgeWeightedGraph.h</itemPath>
       <itemPath>EdgeWeightedGraphCommon.h</itemPath>
       <itemPath>MinimumSpanningTree.h</itemPath>
-      <itemPath>RoadDigraphWrapper.h</itemPath>
-      <itemPath>RoadGraphWrapper.h</itemPath>
-      <itemPath>RoadGraphWrapperCommon.h</itemPath>
       <itemPath>RoadNetwork.h</itemPath>
-      <itemPath>RoadWrapper.h</itemPath>
       <itemPath>ShortestPath.h</itemPath>
       <itemPath>UnionFind.h</itemPath>
       <itemPath>Util.h</itemPath>
+      <itemPath>WrapperDiRoad.h</itemPath>
+      <itemPath>WrapperDigraph.h</itemPath>
+      <itemPath>WrapperGraph.h</itemPath>
+      <itemPath>WrapperGraphCommon.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -29,13 +29,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>RoadDigraphWrapper.cpp</itemPath>
-      <itemPath>RoadGraphWrapper.cpp</itemPath>
-      <itemPath>RoadGraphWrapperCommon.cpp</itemPath>
       <itemPath>RoadNetwork.cpp</itemPath>
-      <itemPath>RoadWrapper.cpp</itemPath>
       <itemPath>UnionFind.cpp</itemPath>
       <itemPath>Util.cpp</itemPath>
+      <itemPath>WrapperGraph.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -75,25 +72,9 @@
       </item>
       <item path="MinimumSpanningTree.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="RoadDigraphWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadDigraphWrapper.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapper.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapperCommon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapperCommon.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadNetwork.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadWrapper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ShortestPath.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -104,6 +85,16 @@
       <item path="Util.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperDiRoad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperDigraph.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperGraph.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WrapperGraph.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperGraphCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -147,25 +138,9 @@
       </item>
       <item path="MinimumSpanningTree.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="RoadDigraphWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadDigraphWrapper.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapper.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapperCommon.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadGraphWrapperCommon.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadNetwork.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RoadWrapper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RoadWrapper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ShortestPath.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -176,6 +151,16 @@
       <item path="Util.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Util.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperDiRoad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperDigraph.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperGraph.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WrapperGraph.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WrapperGraphCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

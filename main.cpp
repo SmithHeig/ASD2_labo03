@@ -23,7 +23,7 @@ using namespace std;
 // en passant par le reseau routier rn. Le critere a optimiser est la distance.
 
 #define HIGHWAY_SPEED 120.0
-#define NORMAL_ROAD_SPEED.0 70
+#define NORMAL_ROAD_SPEED 70.0
 #define HIGHWAY_RENOVATION_PRICE 15.0      // IN MILLIONS
 #define NORMAL_ROAD_RENOVATION_PRICE 7.0   // IN MILLIONS
 

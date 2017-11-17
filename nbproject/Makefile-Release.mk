@@ -35,13 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/RoadDigraphWrapper.o \
-	${OBJECTDIR}/RoadGraphWrapper.o \
-	${OBJECTDIR}/RoadGraphWrapperCommon.o \
 	${OBJECTDIR}/RoadNetwork.o \
-	${OBJECTDIR}/RoadWrapper.o \
 	${OBJECTDIR}/UnionFind.o \
 	${OBJECTDIR}/Util.o \
+	${OBJECTDIR}/WrapperGraph.o \
 	${OBJECTDIR}/main.o
 
 
@@ -69,30 +66,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/asd2_labo03.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/asd2_labo03 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/RoadDigraphWrapper.o: RoadDigraphWrapper.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadDigraphWrapper.o RoadDigraphWrapper.cpp
-
-${OBJECTDIR}/RoadGraphWrapper.o: RoadGraphWrapper.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadGraphWrapper.o RoadGraphWrapper.cpp
-
-${OBJECTDIR}/RoadGraphWrapperCommon.o: RoadGraphWrapperCommon.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadGraphWrapperCommon.o RoadGraphWrapperCommon.cpp
-
 ${OBJECTDIR}/RoadNetwork.o: RoadNetwork.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadNetwork.o RoadNetwork.cpp
-
-${OBJECTDIR}/RoadWrapper.o: RoadWrapper.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadWrapper.o RoadWrapper.cpp
 
 ${OBJECTDIR}/UnionFind.o: UnionFind.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -103,6 +80,11 @@ ${OBJECTDIR}/Util.o: Util.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util.o Util.cpp
+
+${OBJECTDIR}/WrapperGraph.o: WrapperGraph.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WrapperGraph.o WrapperGraph.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

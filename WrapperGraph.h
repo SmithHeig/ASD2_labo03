@@ -54,22 +54,22 @@
  * Created on 10. novembre 2017, 09:02
  */
 
+
+#ifndef WRAPPERGRAPH_H
+#define WRAPPERGRAPH_H
+
 #include "RoadNetwork.h"
-#include "EdgeWeightedGraphCommon.h"
+#include "WrapperDiRoad.h"
 
-#ifndef WRAPPER_H
-#define WRAPPER_H
-
-template <typename T, F>
-class RoadGraphWrapper{
+template <typename T, template<typename> class F>
+class WrapperGraph{
 
 private:
-    typedef RoadWrapper<F> Edge;
+    typedef WrapperDiRoad<T,F> Edge;
     RoadNetwork *rn;
     
 public:
-    RoadGraphWrapper(RoadNetwork *rn) : rn(rn) {
-    }
+    WrapperGraph(RoadNetwork *rn) : rn(rn) {};
     
     int V();
     
@@ -78,5 +78,5 @@ public:
     void forEachAdjacentEdge(int v, void (*f) (const Edge&));    
 };
 
-#endif /* WRAPPER_H */
+#endif /* WRAPPERGRAPH_H */
 

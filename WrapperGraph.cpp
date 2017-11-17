@@ -57,25 +57,25 @@
 
 #include "RoadNetwork.h"
 
-#include "RoadGraphWrapper.h"
+#include "WrapperGraph.h"
+#include "WrapperDiRoad.h"
 
-    
-template< typename T>
-int RoadGraphWrapper::V(){
-    return rn.cities.size();
+template <typename T, template<typename> class F>
+int WrapperGraph<T,F>::V(){
+    return rn->cities.size();
 }
-    
-template< typename T>
-void RoadGraphWrapper::forEachEdge(void (*f) (const Edge&)){
-    for(RoadNetwork::Road &r : rn->roads){               // PAS SUR COPIE?
-        f(roadToEdge(r));
+
+template <typename T, template<typename> class F>
+void WrapperGraph<T,F>::forEachEdge(void (*f) (const Edge&)){
+    for(WrapperDiRoad<T,F> &r : rn->roads){               // PAS SUR COPIE?
+        f(WrapperDiRoad<T,F>(r));
     }
 }
-    
-template< typename T>
-void RoadGraphWrapper::forEachAdjacentEdge(int v, void (*f) (const Edge&)){
-    for(RoadNetwork::Road &r : rn->cities[v].roads){     // PAS SUR COPIE?
-        f(new Edge(r.cities.first, r.cities.second,));
+
+template <typename T, template<typename> class F>
+void WrapperGraph<T,F>::forEachAdjacentEdge(int v, void (*f) (const Edge&)){
+    for(WrapperDiRoad<T,F> &r : rn->cities[v].roads){     // PAS SUR COPIE?
+        f(WrapperDiRoad<T,F>(r));
     }
 }
 
