@@ -25,7 +25,7 @@ private:
     RoadNetwork *rn;
     
 public:
-    RoadGraphWrapper(RoadNetwork &rn) : rn(rn) {
+    RoadGraphWrapper(RoadNetwork *rn) : rn(rn) {
     }
     
     int V();
