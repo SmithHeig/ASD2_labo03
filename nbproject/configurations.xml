@@ -12,6 +12,7 @@
       <itemPath>RoadGraphWrapper.h</itemPath>
       <itemPath>RoadGraphWrapperCommon.h</itemPath>
       <itemPath>RoadNetwork.h</itemPath>
+      <itemPath>RoadWrapper.h</itemPath>
       <itemPath>ShortestPath.h</itemPath>
       <itemPath>UnionFind.h</itemPath>
       <itemPath>Util.h</itemPath>
@@ -32,6 +33,7 @@
       <itemPath>RoadGraphWrapper.cpp</itemPath>
       <itemPath>RoadGraphWrapperCommon.cpp</itemPath>
       <itemPath>RoadNetwork.cpp</itemPath>
+      <itemPath>RoadWrapper.cpp</itemPath>
       <itemPath>UnionFind.cpp</itemPath>
       <itemPath>Util.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -88,6 +90,10 @@
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadNetwork.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadWrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadWrapper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ShortestPath.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -156,6 +162,10 @@
       <item path="RoadNetwork.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RoadNetwork.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RoadWrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RoadWrapper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ShortestPath.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/RoadGraphWrapper.o \
 	${OBJECTDIR}/RoadGraphWrapperCommon.o \
 	${OBJECTDIR}/RoadNetwork.o \
+	${OBJECTDIR}/RoadWrapper.o \
 	${OBJECTDIR}/UnionFind.o \
 	${OBJECTDIR}/Util.o \
 	${OBJECTDIR}/main.o
@@ -87,6 +88,11 @@ ${OBJECTDIR}/RoadNetwork.o: RoadNetwork.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadNetwork.o RoadNetwork.cpp
+
+${OBJECTDIR}/RoadWrapper.o: RoadWrapper.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RoadWrapper.o RoadWrapper.cpp
 
 ${OBJECTDIR}/UnionFind.o: UnionFind.cpp
 	${MKDIR} -p ${OBJECTDIR}
