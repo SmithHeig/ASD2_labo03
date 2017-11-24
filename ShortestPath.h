@@ -77,6 +77,7 @@ public:
 	DijkstraSP(const GraphType& g, int v)  {
             std::set<std::pair<Weight,int>> processList;
             BASE::distanceTo.resize(g.V());
+            BASE::edgeTo.resize(g.V());
             
             for(int i = 0; i < g.V(); ++i){
                 BASE::distanceTo.at(i) = std::numeric_limits<Weight>::max();
