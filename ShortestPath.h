@@ -75,14 +75,38 @@ public:
         typedef std::pair<Edge,int> EdgeVertex;     // paire arc/sommet.
         
 	DijkstraSP(const GraphType& g, int v)  {
+            std::set<std::pair<Weight,int>> processList;
+            BASE::distanceTo.resize(g.V());
             
-            doDjikstra(g, v);
+            for(int i = 0; i < g.V(); ++i){
+                BASE::distanceTo.at(i) = std::numeric_limits<Weight>::max();
+            }
+            
+            BASE::distanceTo.at(v) = 0;
+            processList.insert(std::make_pair(BASE::distanceTo.at(v),v));
+            while(!processList.empty()){
+                int vToProcess = processList.begin()->second;
+                processList.erase(processList.begin()); // Supprime l'élément traité
+                
+                g.forEachAdjacentEdge(vToProcess,
+                [&](const Edge& e){
+                    if(BASE::distanceTo.at(e.To()) > BASE::DistanceTo(e.From()) + e.Weight()){
+                        if(BASE::distanceTo.at(e.To()) != std::numeric_limits<Weight>::max()){
+                            processList.erase(std::make_pair(BASE::distanceTo.at(e.From()),e.From()));
+                        }
+                        BASE::distanceTo.at(e.To()) = BASE::distanceTo.at(e.From()) + e.Weight();
+                        processList.insert(std::make_pair(BASE::distanceTo.at(e.From()),e.From()));
+                        BASE::edgeTo.at(e.To()) = e;
+                    }
+                });
+            }
+            //doDjikstra(g, v);
             
             
             /* to do*/
 	}
         
-        void doDjikstra(const GraphType& g, int v){
+        /*void doDjikstra(const GraphType& g, int v){
             
             std::priority_queue<EdgeVertex, Weight> q;
             
@@ -162,9 +186,9 @@ public:
             g.forEachVertex();
             
             
-        }
+        }*/
         
-        void funct modifier()
+        //void funct modifier()
 };
 
 // Algorithme de BellmanFord.
