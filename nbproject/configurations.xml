@@ -13,11 +13,7 @@
       <itemPath>UnionFind.h</itemPath>
       <itemPath>Util.h</itemPath>
       <itemPath>WrapperDiGraph.h</itemPath>
-      <itemPath>WrapperDiRoad.h</itemPath>
       <itemPath>WrapperGraph.h</itemPath>
-      <itemPath>WrapperGraphCommon.h</itemPath>
-      <itemPath>WrapperRoad.h</itemPath>
-      <itemPath>WrapperRoadCommon.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -57,6 +53,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
       </compileType>
       <item path="10000EWD.txt" ex="false" tool="3" flavor2="0">
       </item>
@@ -86,15 +85,7 @@
       </item>
       <item path="WrapperDiGraph.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="WrapperDiRoad.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="WrapperGraph.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperGraphCommon.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperRoad.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperRoadCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -117,6 +108,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -153,15 +145,7 @@
       </item>
       <item path="WrapperDiGraph.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="WrapperDiRoad.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="WrapperGraph.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperGraphCommon.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperRoad.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="WrapperRoadCommon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -126,50 +126,6 @@ public:
                     }
                 });
             }
-            
-            /*
-            BASE::distanceTo.resize(g.V());
-            BASE::edgeTo.resize(g.V());
-            BASE::distanceTo.at(v) = 0;
-            std::set<std::pair<Weight,int>> processList;
-            
-            for(int i = 0; i < g.V(); ++i){
-                BASE::distanceTo.at(i) = std::numeric_limits<Weight>::max();
-            }
-            
-            BASE::edgeTo.at(v) = Edge(v, v, 0);
-            
-            BASE::distanceTo.at(v) = 0;
-            processList.insert(std::make_pair(BASE::distanceTo.at(v), v));
-            while(!processList.empty()){
-                int vToProcess = processList.begin()->second;
-                
-                if(processList.size() == 1){
-                    processList.clear();
-                } else {
-                    processList.erase(processList.begin()); // Supprime l'élément traité
-                }
-                
-                g.forEachAdjacentEdge(vToProcess, [&](const Edge& e){
-                    
-                    
-                    if(this->distanceTo.at(e.To()) > this->distanceTo.at(e.From()) + e.Weight()){
-                        
-                        if(this->distanceTo.at(e.To()) != std::numeric_limits<Weight>::max()){
-                            processList.erase(processList.find(std::make_pair(BASE::distanceTo.at(e.To()), e.To())));
-                        }
-                        this->distanceTo.at(e.To()) = this->distanceTo.at(vToProcess) + e.Weight();
-                        processList.insert(std::make_pair(this->distanceTo.at(e.From()), e.To()));
-                        
-                        this->edgeTo.at(e.To()) = e;
-                    }
-                });
-                
-            }
-            */
-            
-            
-            /* to do*/
 	}
 };
 
