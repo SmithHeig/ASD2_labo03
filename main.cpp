@@ -54,7 +54,7 @@ void PlusCourtChemin(const string& depart, const string& arrivee, RoadNetwork& r
    
    DijkstraSP<WrapperDiGraph<double (*)(const RoadNetwork::Road&)>> dsp(wdg, DEP);
    
-   cout << "Longeur de chemin le plus court de " << depart << " à " << arrivee << ": " << dsp.DistanceTo(DEST) << "\n";
+   cout << "Longeur de chemin le plus court de " << depart << " a " << arrivee << ": " << dsp.DistanceTo(DEST) << "\n";
     cout << "Route: ";
     
     for(WeightedDirectedEdge<double> e : dsp.PathTo(DEST)){
@@ -67,35 +67,54 @@ void PlusCourtChemin(const string& depart, const string& arrivee, RoadNetwork& r
 // en passant par le reseau routier rn. Le critere a optimiser est le temps de parcours
 // sachant que l'on roule a 120km/h sur autoroute et 70km/h sur route normale.
 
-double TimeToWeight(RoadNetwork::Road &r){
+double TimeToWeight(const RoadNetwork::Road &r){
     return (r.length * r.motorway.Value() / HIGHWAY_SPEED) + (r.length * (1 - r.motorway.Value()) / NORMAL_ROAD_SPEED);
 }
 void PlusRapideChemin(const string& depart, const string& arrivee, const string& via, RoadNetwork& rn) {
     /* A IMPLEMENTER */
-//    int s = rn.cityIdx(depart);
-//    int t = rn.cityIdx(arrivee);
-//    int p = rn.cityIdx(via);
-//    
-//    WrapperDiGraph<double>(rn);
-//    
-//    dikstra<WrapperDiGraph<double>> (rn, TimeToWeight);
-//    Eges es = pathTo(rn, arrivee);
-//    
-//    for(Edge e2 : es){
-//        rn.cities(e.To());
-//    }
-//    
+    const int s = rn.cityIdx.at(depart);
+    const int t = rn.cityIdx.at(arrivee);
+    const int p = rn.cityIdx.at(via);
+    
+    WrapperDiGraph<double (*)(const RoadNetwork::Road&)> wdg(rn, TimeToWeight);
+    DijkstraSP<WrapperDiGraph<double (*)(const RoadNetwork::Road&)>> dsp1(wdg, s);
+    
+    DijkstraSP<WrapperDiGraph<double (*)(const RoadNetwork::Road&)>> dsp2(wdg, p);
+    
+    cout << "Temps pris pour aller de " << depart << " a " << arrivee << " via " << via << ": " << dsp1.DistanceTo(p) + dsp2.DistanceTo(t) << "\n";
+    cout << "Route: ";
+    
+    for(WeightedDirectedEdge<double> e : dsp1.PathTo(p)){
+        cout << rn.cities.at(e.From()).name << " -> ";
+    }
+    for(WeightedDirectedEdge<double> e : dsp2.PathTo(t)){
+        cout << rn.cities.at(e.From()).name << " -> ";
+    }
+    cout << arrivee << endl;
+    
 }
 
 // Calcule et affiche le plus reseau a renover couvrant toutes les villes le moins
 // cher, en sachant que renover 1km d'autoroute coute 15 MF, et renover 1km de route normale
 // coute 7 MF.
 
-double CheapestToWeight(RoadNetwork::Road &r) {
+double CheapestToWeight(const RoadNetwork::Road &r) {
     return (r.length * r.motorway.Value() * HIGHWAY_RENOVATION_PRICE) + (r.length * (1 - r.motorway.Value()) * NORMAL_ROAD_RENOVATION_PRICE);
 }
 void ReseauLeMoinsCher(RoadNetwork &rn) {
-    /* A IMPLEMENTER */
+    
+    WrapperGraph<double (*)(const RoadNetwork::Road&)> wg(rn, CheapestToWeight);
+    
+    std::vector<WeightedEdge<double>> vwe = MinimumSpanningTree<WrapperGraph<double (*)(const RoadNetwork::Road&)>>::Kruskal(wg);
+    
+    double price = 0;
+    for(WeightedEdge<double> e : vwe){
+        std::cout << " de " << rn.cities.at(e.Either()).name << " a " << rn.cities.at(e.Other(e.Either())).name << " pour " << e.Weight() << " Millions CHF" << std::endl;
+        price += e.Weight();
+    }
+    
+    std::cout << " PRICE TOTAL : " << price << endl;
+    
 }
 
 // compare les algorithmes Dijkstra et BellmanFord pour calculer les plus courts chemins au
@@ -139,31 +158,31 @@ void testShortestPath(string filename)
 }
 
 int main(int argc, const char * argv[]) {
-    
+    /*
     testShortestPath("tinyEWD.txt");
     testShortestPath("mediumEWD.txt");
     testShortestPath("1000EWD.txt");
     testShortestPath("10000EWD.txt");
-    
+    */
     RoadNetwork rn("reseau.txt");
     
     cout << "1. Chemin le plus court entre Geneve et Emmen" << endl;
     
     PlusCourtChemin("Geneve", "Emmen", rn);
     
-    cout << "2. Chemin le plus court entre Lausanne et Bale" << endl;
+    cout << endl << "2. Chemin le plus court entre Lausanne et Bale" << endl;
     
     PlusCourtChemin("Lausanne", "Basel", rn);
   
-    cout << "3. chemin le plus rapide entre Geneve et Emmen en passant par Yverdon" << endl;
+    cout << endl << "3. chemin le plus rapide entre Geneve et Emmen en passant par Yverdon" << endl;
     
     PlusRapideChemin("Geneve", "Emmen", "Yverdon-Les-Bains", rn);
     
-    cout << "4. chemin le plus rapide entre Geneve et Emmen en passant par Vevey" << endl;
+    cout << endl << "4. chemin le plus rapide entre Geneve et Emmen en passant par Vevey" << endl;
     
     PlusRapideChemin("Geneve", "Emmen", "Vevey", rn);
 
-    cout << "5. Quelles routes doivent etre renovees ? Quel sera le cout de la renovation de ces routes ?" << endl;
+    cout << endl << "5. Quelles routes doivent etre renovees ? Quel sera le cout de la renovation de ces routes ?" << endl;
     
     ReseauLeMoinsCher(rn);
     
