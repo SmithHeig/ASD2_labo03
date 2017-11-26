@@ -111,6 +111,8 @@ void testShortestPath(string filename)
     typedef EdgeWeightedDiGraph<double> Graph;
     Graph ewd(filename);
     
+    cout<< "WSD>ASD1" <<endl;
+    
     clock_t startTime = clock();
 
     BellmanFordSP<Graph> referenceSP(ewd,0);
@@ -138,10 +140,10 @@ void testShortestPath(string filename)
 
 int main(int argc, const char * argv[]) {
     
-    /*testShortestPath("tinyEWD.txt");
+    testShortestPath("tinyEWD.txt");
     testShortestPath("mediumEWD.txt");
     testShortestPath("1000EWD.txt");
-    testShortestPath("10000EWD.txt");*/
+    testShortestPath("10000EWD.txt");
     
     RoadNetwork rn("reseau.txt");
     

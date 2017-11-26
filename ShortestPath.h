@@ -89,51 +89,45 @@ public:
         
         
 	DijkstraSP(const GraphType& g, int v)  {
-            /*std::set<std::pair<Weight,int>> processList;
+            std::set<std::pair<Weight,int>> processList;
             BASE::distanceTo.resize(g.V());
             BASE::edgeTo.resize(g.V());
-            std::vector<bool> processed(g.V(), false);
             
-            //std::cout << "test1" << std::endl;
             for(int i = 0; i < g.V(); ++i){
                 this->distanceTo.at(i) = std::numeric_limits<Weight>::max();
             }
-            //std::cout << "test2" << std::endl;
-            //this->distanceTo.at(v) = 0;
-            
-            g.forEachVertex([&](const int tmpV){
-                //std::cout << "test Vertex " << tmpV << std::endl;
-                this->distanceTo.at(tmpV) = std::numeric_limits<Weight>::max();                
-                processList.insert(std::make_pair(this->distanceTo[tmpV], tmpV));
-            });
             
             this->distanceTo.at(v) = 0;
             this->edgeTo.at(v) = Edge(v,v,0);
-            //std::cout << "test3" << std::endl;
+            
+            g.forEachVertex([&](const int tmpV){               
+                processList.insert(std::make_pair(this->distanceTo[tmpV], tmpV));
+            });
+            
+            //this->distanceTo.at(v) = 0;
+            
+            
             while(!processList.empty()){
                 // Extract min
                 int vToProcess = processList.begin()->second;
                 processList.erase(processList.begin());
-                processed.at(vToProcess) = true;
                 
-                std::cout << "V" << vToProcess << ": " << this->DistanceTo(vToProcess) << "\n";
-                //std::cout << "test4 " << vToProcess << std::endl;
+                //std::cout << "V" << vToProcess << ": " << this->DistanceTo(vToProcess) << "\n";
+                
                 g.forEachAdjacentEdge(vToProcess, [&](const Edge& e){
-                    if(!processed.at(e.To())){
-                        Weight dist = this->distanceTo.at(e.From()) + e.Weight();
-                        //std::cout << "this->distanceTo.at(vToProcess) + e.Weight(): " << this->distanceTo.at(vToProcess) + e.Weight() << "\n";
-                        if(dist < this->distanceTo.at(e.To())){
-                            processList.erase(processList.find(std::make_pair(this->distanceTo.at(e.To()), e.To())));
-                            this->distanceTo.at(e.To()) = dist;
-                            this->edgeTo.at(e.To()) = e;
-                            processList.insert(std::make_pair(dist, e.To()));                        
-                        }
-                        //std::cout << "test5" << std::endl;
+                    
+                    Weight dist = this->distanceTo.at(e.From()) + e.Weight();
+                    //std::cout << "this->distanceTo.at(vToProcess) + e.Weight(): " << this->distanceTo.at(vToProcess) + e.Weight() << "\n";
+                    if(dist < this->distanceTo.at(e.To())){
+                        processList.erase(processList.find(std::make_pair(this->distanceTo.at(e.To()), e.To())));
+                        this->distanceTo.at(e.To()) = dist;
+                        this->edgeTo.at(e.To()) = e;
+                        processList.insert(std::make_pair(dist, e.To()));                        
                     }
                 });
-            }*/
+            }
             
-            
+            /*
             BASE::distanceTo.resize(g.V());
             BASE::edgeTo.resize(g.V());
             BASE::distanceTo.at(v) = 0;
@@ -172,6 +166,7 @@ public:
                 });
                 
             }
+            */
             
             
             /* to do*/

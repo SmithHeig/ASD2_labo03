@@ -57,9 +57,6 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
-        <ccTool>
-          <standard>8</standard>
-        </ccTool>
       </compileType>
       <item path="10000EWD.txt" ex="false" tool="3" flavor2="0">
       </item>
@@ -120,7 +117,6 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
