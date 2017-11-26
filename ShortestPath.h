@@ -48,12 +48,24 @@ public:
 	// Renvoie le dernier arc u->v du chemin le plus court du sommet source a v
 	Edge EdgeTo(int v) {
 		return edgeTo.at(v);
-	}
+        }
 	
 	// Renvoie la liste ordonnee des arcs constituant un chemin le plus court du
 	// sommet source à v.
 	Edges PathTo(int v) {
-		/* A IMPLEMENTER */
+            //vecteur a retourner
+            Edges pathTo;
+            
+            Edge e = edgeTo.at(v);
+            
+            while(e.From() != e.To()){
+                pathTo.push_back(e);
+                e = edgeTo.at(e.From());
+            }
+            
+            std::reverse(pathTo.begin(), pathTo.end()); 
+            
+            return pathTo;
 	}
 
 protected:
@@ -74,122 +86,96 @@ public:
 	typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
         typedef std::pair<Edge,int> EdgeVertex;     // paire arc/sommet.
         
+        
+        
 	DijkstraSP(const GraphType& g, int v)  {
-            std::set<std::pair<Weight,int>> processList;
+            /*std::set<std::pair<Weight,int>> processList;
             BASE::distanceTo.resize(g.V());
             BASE::edgeTo.resize(g.V());
+            std::vector<bool> processed(g.V(), false);
+            
+            //std::cout << "test1" << std::endl;
+            for(int i = 0; i < g.V(); ++i){
+                this->distanceTo.at(i) = std::numeric_limits<Weight>::max();
+            }
+            //std::cout << "test2" << std::endl;
+            //this->distanceTo.at(v) = 0;
+            
+            g.forEachVertex([&](const int tmpV){
+                //std::cout << "test Vertex " << tmpV << std::endl;
+                this->distanceTo.at(tmpV) = std::numeric_limits<Weight>::max();                
+                processList.insert(std::make_pair(this->distanceTo[tmpV], tmpV));
+            });
+            
+            this->distanceTo.at(v) = 0;
+            this->edgeTo.at(v) = Edge(v,v,0);
+            //std::cout << "test3" << std::endl;
+            while(!processList.empty()){
+                // Extract min
+                int vToProcess = processList.begin()->second;
+                processList.erase(processList.begin());
+                processed.at(vToProcess) = true;
+                
+                std::cout << "V" << vToProcess << ": " << this->DistanceTo(vToProcess) << "\n";
+                //std::cout << "test4 " << vToProcess << std::endl;
+                g.forEachAdjacentEdge(vToProcess, [&](const Edge& e){
+                    if(!processed.at(e.To())){
+                        Weight dist = this->distanceTo.at(e.From()) + e.Weight();
+                        //std::cout << "this->distanceTo.at(vToProcess) + e.Weight(): " << this->distanceTo.at(vToProcess) + e.Weight() << "\n";
+                        if(dist < this->distanceTo.at(e.To())){
+                            processList.erase(processList.find(std::make_pair(this->distanceTo.at(e.To()), e.To())));
+                            this->distanceTo.at(e.To()) = dist;
+                            this->edgeTo.at(e.To()) = e;
+                            processList.insert(std::make_pair(dist, e.To()));                        
+                        }
+                        //std::cout << "test5" << std::endl;
+                    }
+                });
+            }*/
+            
+            
+            BASE::distanceTo.resize(g.V());
+            BASE::edgeTo.resize(g.V());
+            BASE::distanceTo.at(v) = 0;
+            std::set<std::pair<Weight,int>> processList;
             
             for(int i = 0; i < g.V(); ++i){
                 BASE::distanceTo.at(i) = std::numeric_limits<Weight>::max();
             }
             
+            BASE::edgeTo.at(v) = Edge(v, v, 0);
+            
             BASE::distanceTo.at(v) = 0;
-            processList.insert(std::make_pair(BASE::distanceTo.at(v),v));
+            processList.insert(std::make_pair(BASE::distanceTo.at(v), v));
             while(!processList.empty()){
                 int vToProcess = processList.begin()->second;
-                processList.erase(processList.begin()); // Supprime l'élément traité
                 
-                g.forEachAdjacentEdge(vToProcess,
-                [&](const Edge& e){
-                    if(BASE::distanceTo.at(e.To()) > BASE::DistanceTo(e.From()) + e.Weight()){
-                        if(BASE::distanceTo.at(e.To()) != std::numeric_limits<Weight>::max()){
-                            processList.erase(std::make_pair(BASE::distanceTo.at(e.From()),e.From()));
+                if(processList.size() == 1){
+                    processList.clear();
+                } else {
+                    processList.erase(processList.begin()); // Supprime l'élément traité
+                }
+                
+                g.forEachAdjacentEdge(vToProcess, [&](const Edge& e){
+                    
+                    
+                    if(this->distanceTo.at(e.To()) > this->distanceTo.at(e.From()) + e.Weight()){
+                        
+                        if(this->distanceTo.at(e.To()) != std::numeric_limits<Weight>::max()){
+                            processList.erase(processList.find(std::make_pair(BASE::distanceTo.at(e.To()), e.To())));
                         }
-                        BASE::distanceTo.at(e.To()) = BASE::distanceTo.at(e.From()) + e.Weight();
-                        processList.insert(std::make_pair(BASE::distanceTo.at(e.From()),e.From()));
-                        BASE::edgeTo.at(e.To()) = e;
+                        this->distanceTo.at(e.To()) = this->distanceTo.at(vToProcess) + e.Weight();
+                        processList.insert(std::make_pair(this->distanceTo.at(e.From()), e.To()));
+                        
+                        this->edgeTo.at(e.To()) = e;
                     }
                 });
+                
             }
-            //doDjikstra(g, v);
             
             
             /* to do*/
 	}
-        
-        /*void doDjikstra(const GraphType& g, int v){
-            
-            std::priority_queue<EdgeVertex, Weight> q;
-            
-            
-            Weight distTo[g.V()];
-            Edge edgeTo[g.V()];
-            
-            distTo[v] = 0.0;
-            g.forEachVertex(v, [&](const Edge& e){
-                if( e != v){
-                    distTo[e] = -1;
-                    edgeTo[e] = NULL;
-                }
-                q.emplace(e, g.distTo(e));
-            });
-            
-            
-            int monSommet;
-            while(!q.empty()){
-                monSommet = q.top();
-                q.pop();
-                
-                for(Edge e : g.adjacentEdges(monSommet)){
-                    Weight dittThruE = distTo(v) + e.wheigt;
-                    if(dittThruE < distTo(e.to()){
-                        distTo[e.to()] = dittThruE;
-                        edgeTo[e.to()] = e;
-                    }
-                    q.emplace(e.to(), distTo(e.to()));
-                }
-            }
-
-            
-            
-            std::priority_queue<int, int> pq;
-            g.forEachVertex(pq.push({}, -1));
-            pq.emplace(v, 0);
-            
-            while(!pq.empty()){
-                pq.pop();
-                int *lanbI = pq.top();
-                if(*lanbI == -1){
-                    break;
-                }
-                g.forEachEdge(
-                
-            }
-            
-            size_t k = 0;
-            bool hasToContinue = true;
-            std::vector<int> sommetsWight;
-            std::vector<int> parent(g.V(), -1);
-            sommetsWight.resize(g.V(), -1);
-            
-            sommetsWight.at(v) = 0;
-            
-            while(k < g.V() && hasToContinue){
-                
-                hasToContinue = false;
-                ++k;
-                g.forEachEdge({
-                    
-                    
-                    
-                    
-                    
-                });
-                
-                
-                
-            }
-            
-            std::priority_queue<int> q;
-            double distTo[g.V()];
-            Edge Egges[g.V()];
-            
-            g.forEachVertex();
-            
-            
-        }*/
-        
-        //void funct modifier()
 };
 
 // Algorithme de BellmanFord.

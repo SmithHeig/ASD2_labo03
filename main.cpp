@@ -1,3 +1,8 @@
+
+
+
+///--------------------------------------------------------
+
 /* 
  * File:   main.cpp
  * ASD 2 - Labo 3
@@ -17,6 +22,9 @@
 #include "EdgeWeightedGraph.h"
 #include "EdgeWeightedDiGraph.h"
 
+#include "WrapperDiGraph.h"
+#include "WrapperGraph.h"
+
 using namespace std;
 
 // Calcule et affiche le plus court chemin de la ville depart a la ville arrivee
@@ -27,12 +35,32 @@ using namespace std;
 #define HIGHWAY_RENOVATION_PRICE 15.0      // IN MILLIONS
 #define NORMAL_ROAD_RENOVATION_PRICE 7.0   // IN MILLIONS
 
-double LengthToWeight(RoadNetwork::Road &r){
+typedef WeightedDirectedEdge<double> DiEdge;
+
+
+double LengthToWeight(const RoadNetwork::Road &r){
     return r.length;
 }
+
+// Calcule et affiche le plus court chemin de la ville depart a la ville arrivee
+// en passant par le reseau routier rn. Le critere a optimiser est la distance.
+
 void PlusCourtChemin(const string& depart, const string& arrivee, RoadNetwork& rn) {   
-    /* A IMPLEMENTER */
+   
+   const int DEP = rn.cityIdx.at(depart);
+   const int DEST = rn.cityIdx.at(arrivee);
+   
+   WrapperDiGraph<double (*)(const RoadNetwork::Road&)> wdg(rn, LengthToWeight);
+   
+   DijkstraSP<WrapperDiGraph<double (*)(const RoadNetwork::Road&)>> dsp(wdg, DEP);
+   
+   cout << "Longeur de chemin le plus court de " << depart << " à " << arrivee << ": " << dsp.DistanceTo(DEST) << "\n";
+    cout << "Route: ";
     
+    for(WeightedDirectedEdge<double> e : dsp.PathTo(DEST)){
+        cout << rn.cities.at(e.From()).name << " -> ";
+    }
+    cout << arrivee << endl;
 }
 
 // Calcule et affiche le plus rapide chemin de la ville depart a la ville arrivee via la ville "via"
@@ -44,6 +72,19 @@ double TimeToWeight(RoadNetwork::Road &r){
 }
 void PlusRapideChemin(const string& depart, const string& arrivee, const string& via, RoadNetwork& rn) {
     /* A IMPLEMENTER */
+//    int s = rn.cityIdx(depart);
+//    int t = rn.cityIdx(arrivee);
+//    int p = rn.cityIdx(via);
+//    
+//    WrapperDiGraph<double>(rn);
+//    
+//    dikstra<WrapperDiGraph<double>> (rn, TimeToWeight);
+//    Eges es = pathTo(rn, arrivee);
+//    
+//    for(Edge e2 : es){
+//        rn.cities(e.To());
+//    }
+//    
 }
 
 // Calcule et affiche le plus reseau a renover couvrant toutes les villes le moins
@@ -80,24 +121,27 @@ void testShortestPath(string filename)
     DijkstraSP<Graph> testSP(ewd,0);
     
     cout << "Dijkstra:     " << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
-
+     
     for (int v=0; v<ewd.V(); ++v) {
         if (referenceSP.DistanceTo(v) != testSP.DistanceTo(v) ) {
-            cout << "Oops: vertex" << v << " has " << referenceSP.DistanceTo(v) << " != " <<  testSP.DistanceTo(v) << endl;
+            cout << "Oops: vertex " << v << " has " << referenceSP.DistanceTo(v) << " != " <<  testSP.DistanceTo(v) << endl;
             ok = false;
             break;
         }
     }
+    
+
+    testSP.PathTo(6);
     
     if(ok) cout << " ... test succeeded " << endl << endl;
 }
 
 int main(int argc, const char * argv[]) {
     
-    testShortestPath("tinyEWD.txt");
+    /*testShortestPath("tinyEWD.txt");
     testShortestPath("mediumEWD.txt");
     testShortestPath("1000EWD.txt");
-    testShortestPath("10000EWD.txt");
+    testShortestPath("10000EWD.txt");*/
     
     RoadNetwork rn("reseau.txt");
     

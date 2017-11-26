@@ -38,7 +38,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/RoadNetwork.o \
 	${OBJECTDIR}/UnionFind.o \
 	${OBJECTDIR}/Util.o \
-	${OBJECTDIR}/WrapperGraph.o \
 	${OBJECTDIR}/main.o
 
 
@@ -80,11 +79,6 @@ ${OBJECTDIR}/Util.o: Util.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Util.o Util.cpp
-
-${OBJECTDIR}/WrapperGraph.o: WrapperGraph.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WrapperGraph.o WrapperGraph.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

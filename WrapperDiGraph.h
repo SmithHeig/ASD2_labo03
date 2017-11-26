@@ -11,39 +11,46 @@
  * Created on 10. novembre 2017, 14:00
  */
 
+#ifndef WRAPPERDIGRAPH_H
+#define WRAPPERDIGRAPH_H
+
 #include "RoadNetwork.h"
-#include "EdgeWeightedGraph.h"
 #include "EdgeWeightedDigraph.h"
 
-#ifndef WRAPPERGRAPH_H
-#define WRAPPERGRAPH_H
-
 template <typename F>
-class WrapperGraph {
+class WrapperDiGraph {
 private:
     RoadNetwork rn;
-    F calculeCout;
+    F calculCout;
     
 public:
     // Type queue de priorite. MinPQ::top() retourne l'élément le plus petit.
     //typedef std::priority_queue<Edge,std::vector<Edge>,std::greater<Edge>> MinPQ;
-    typedef WeightedEdge<double> Edge;
+    typedef WeightedDirectedEdge<double> Edge;
     
     
-    WrapperGraph(const RoadNetwork& rn, F f): rn(rn), calculeCout(f){}
+    WrapperDiGraph(RoadNetwork& rn, F f): rn(rn), calculCout(f){}
     
     int V() const {
         return int(rn.cities.size());
     }
     
+    //  void (*func) (const Edge&)
     template<typename Func>
-    void forEachEdge(Func f) const{
-        for(RoadNetwork::Road r : rn.roads){
-            Edge temp(r.cities.first,r.cities.second,calculeCout(r));
-            f(temp);
+    void forEachAdjacentEdge(int v, Func f) const{
+        for(int id_road : rn.cities.at(v).roads){
+            RoadNetwork::Road r = rn.roads.at(id_road);
+            f(Edge(r.cities.first,r.cities.second,calculCout(r)));   
+        }
+    };
+    
+    template<typename Func>
+    void forEachVertex(Func f) const{
+        for(int id_city = 0; id_city < rn.cities.size(); ++id_city){
+            f(id_city);
         }
     }
 };
 
-#endif /* WRAPPERGRAPH_H */
+#endif /* WRAPPERDIGRAPH_H */
 

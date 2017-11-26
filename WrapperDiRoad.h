@@ -16,19 +16,36 @@
 
 #include "RoadNetwork.h"
 #include <iostream>
+#include "WrapperRoadCommon.h"
 
-template <typename T, template<typename> class F>
-class WrapperDiRoad {
-private:
-    RoadNetwork::Road &r;
+template <typename T>
+class WrapperDiRoad : public WrapperRoadCommon<T>{
+public :
+	typedef T WeightType;
+        typedef WrapperRoadCommon<T> BASE;
+    
 public:
-    WrapperDiRoad(RoadNetwork::Road &r) : r(r) {};
-    WrapperDiRoad(const WrapperDiRoad& orig) : r(orig.r){};
+    
+    WrapperDiRoad(){
+        BASE();
+    };
+    WrapperDiRoad(RoadNetwork::Road &r, WeightType (*f)(const RoadNetwork::Road&)){
+        BASE(r,f);
+    }
+    
+    /*WrapperDiRoad(const WrapperRoadCommon<T>& orig){
+        BASE(orig.r, orig.f);
+    }*/
+    /*
+    WrapperDiRoad(const WrapperDiRoad& orig) {
+        BASE(orig.BASE::r, orig.BASE::f);
+    }
+    */
     virtual ~WrapperDiRoad();
     
-    int From() { return r.cities.first; };
-    int To() { return r.cities.second; };
-    T Weight() { return F<T>(&r); }
+    int From() const { return BASE::r->cities.first; };
+    int To() const { return BASE::r->cities.second; };
+    WeightType Weight() const { return BASE::f(BASE::r); };
     
     // Affiche "v1->v2 (weight)"
     friend std::ostream& operator << (std::ostream& s, const WrapperDiRoad& r) {
